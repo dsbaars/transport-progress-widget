@@ -1,0 +1,17 @@
+{
+  "js": [
+    "./frontend/**/*.js",
+    "!./frontend/frontend/static/lib/**/*.js",
+    "!./frontend/frontend/static/js/lib/**/*.js"
+  ],
+  "specs": [
+    "./frontend/**/*.spec.js",
+    "!./frontend/frontend/static/lib/**/*.js",
+    "!./frontend/frontend/static/js/lib/**/*.js"
+  ],
+  "excludeJs": [
+    "./frontend/frontend/static/lib/**/*.js",
+    "./frontend/frontend/static/js/lib/**/*.js"
+  ],
+  "report": "./report/"
+}

@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            <h4>fa-circle</h4>
+            <ul class="route-summary fa-ul variant1">
+                <li ng-repeat="leg in vm.routeSummary[0].legs">
+                    <i class="fa-li fa fa-2x fa-circle-o"></i> {{ leg.from.name }} -> {{ leg.to.name }}
+                </li>
+
+            </ul>
+        </div>
+        <div class="col-md-3 hidden-xs">
+            <h4>fa-circle with duration</h4>
+            <ul class="route-summary fa-ul variant1">
+                <li ng-repeat="leg in vm.routeSummary[1].legs" class="leg">
+                    <i class="fa-li fa fa-2x fa-fw fa-circle-o"></i>
+                    <strong>from:</strong> {{ leg.from.name }}<br>
+                    <small class="duration">{{ leg.duration }}</small>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <button ng-click="vm.show_stops = !vm.show_stops" class="btn btn-xs btn-primary">Toggle stops</button>
+            <ul class="route-summary variant4">
+                <li ng-repeat="leg in vm.routeSummary[0].legs" class="leg with-to" ng-class="[{'has-stops': leg.intermediateStops.length > 0 && vm.show_stops}, vm.getLegClass(leg.mode)]">
+                    <span class="time">{{ leg.startTime|date:'HH:mm' }}</span>
+                    <div class="content">
+                        <div class="name">
+                            {{ leg.from.name }} <small ng-show="leg.from.platformCode">Platform {{ leg.from.platformCode }}</small>
+                            <small>{{leg.agencyName }} {{ leg.routeShortName }}</small>
+                        </div>
+                    </div>
+                    <ul class="stops">
+                        <li ng-repeat="stop in leg.intermediateStops" class="stop" ng-show="vm.show_stops">
+                            <span class="time">{{ stop.arrival|date:'HH:mm' }}</span>
+                            <div class="content">
+                                <div class="name">
+                                    {{ stop.name }}
+                                    <small ng-show="stop.platformCode">Platform {{ stop.platformCode }}</small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span class="time">{{ leg.endTime|date:'HH:mm' }}</span>
+                    <div class="content">
+                        <div class="name">
+                            {{ leg.to.name }}
+                             <small ng-show="leg.to.platformCode">Platform {{ leg.to.platformCode }}</small>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h4>stacked fa-circle and fa-train</h4>
+            <ul class="route-summary fa-ul variant2">
+                <li ng-repeat="leg in vm.routeSummary[2].legs">
+                    <i class="fa-li fa fa-stack">
+                        <i class="fa fa-circle-o fa-stack-2x"></i>
+                        <i class="fa fa-train fa-stack-1x"></i>
+                    </i> {{ leg.from.name }} -> {{ leg.to.name }}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h4>stacked fa-circle and fa-train</h4>
+            <ul class="route-summary fa-ul variant2">
+                <li ng-repeat="leg in vm.routeSummary[2].legs">
+                    <i class="fa-li fa fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-train fa-inverse fa-stack-1x"></i>
+                    </i> {{ leg.from.name }} -> {{ leg.to.name }}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" style="display: none">
+        <div class="col-md-12">
+            <ul class="route-summary-horizontal fa-ul variant2">
+                <li ng-repeat="leg in vm.routeSummary[0].legs">
+                    <i class="fa-li fa fa-2x fa-circle-o"></i>
+                    <span>{{ leg.from.name }} -> {{ leg.to.name }}</span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
